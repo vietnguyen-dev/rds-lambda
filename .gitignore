@@ -1,0 +1,5 @@
+.env
+node_modules
+dist
+us-west-2-bundle.pem
+yarn-error.log

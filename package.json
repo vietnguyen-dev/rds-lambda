@@ -1,0 +1,22 @@
+{
+  "name": "rds-lambda",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc && cp -r node_modules dist/ && cp -r us-west-2-bundle.pem dist/ && cp -r .env dist/ && cd dist && zip -r lambda.zip index.js node_modules us-west-2-bundle.pem .env",
+    "rm": "rm -r dist",
+    "connect": "ts-node scripts/connect.ts",
+    "deploy": "aws lambda update-function-code --function-name connect-rds --zip-file fileb://./dist/index.zip"
+  },
+  "dependencies": {
+    "aws-lambda": "^1.0.7",
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.124",
+    "@types/pg": "^8.10.5",
+    "dotenv": "^16.3.1",
+    "typescript": "^5.2.2"
+  }
+}
